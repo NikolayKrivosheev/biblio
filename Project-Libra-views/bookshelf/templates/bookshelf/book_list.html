@@ -1,0 +1,41 @@
+{% extends "bookshelf/base.html" %}
+{% block content %}
+  <title>Список книг</title>
+  <h1>Список книг</h1>
+  <form method="post">
+	  {% csrf_token %}
+		<input type="text" name="N" value="{{N}}"><input type="submit" name="name" value="Поиск"><input type="submit" name="name" value="Добавить книгу">
+	  
+	{% if book_list %}
+	  <table border=0>
+	  <tr>
+		<input type="hidden" name="Obr" value="{{Obr}}">
+        <input type="hidden" name="Search" value="{{Search}}">
+		<td><button type="submit" name="S" value="0" style='width:100%'>Название книги</button></td>
+		<td><button type="submit" name="S" value="1" style='width:100%'>Автор</button></td>
+		<td><button type="submit" name="S" value="2" style='width:100%'>Статус</button></td>
+		<td><button type="submit" name="S" value="3" style='width:100%'>Читатель</button></td>
+	   </form>
+		  </tr>
+		{% for book in book_list %}
+            <tr>
+            <td>
+                <a href="http://127.0.0.1:8000/book/{{ book.id }}/">{{ book.title }}</a> </td>
+                <td><a href="http://127.0.0.1:8000/author/{{ book.author_id }}/">{{book.author_last_name}} {{book.author_first_name}}</a></td>
+                <td>
+                {% if book.status == 'Available' %}
+                    <a href="http://127.0.0.1:8000/books/available/">{{book.status}}</a>
+                {% else %}
+                    <a href="http://127.0.0.1:8000/books/reserved/">{{book.status}}</a>
+                {% endif %}
+                </td>
+                <td><a href="http://127.0.0.1:8000/user/{{ book.reader_id }}/">{{book.reader_last_name}} {{book.reader_first_name}}</a></td>
+            </td>
+            </tr>
+		{% endfor %}
+	  </table>
+  {% else %}
+    <p>В библиотеке нет книг.</p>
+  {% endif %}
+  <font color=red><i>{{comment}}</i></font>
+{% endblock %}

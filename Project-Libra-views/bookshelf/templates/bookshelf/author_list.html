@@ -1,0 +1,30 @@
+{% extends "bookshelf/base.html" %}
+
+{% block content %}
+  <title>Список авторов</title>
+  <h1>Список авторов</h1>
+  <form method="post">
+	  {% csrf_token %}
+      <input type="text" name="N" value="{{N}}"><input type="submit" name="name" value="Поиск">  <input type="submit" name="name" value="Добавить автора">
+      {% if author_list %}
+        <table border=0>
+        <input type="hidden" name="Obr" value="{{Obr}}">
+        <input type="hidden" name="Search" value="{{Search}}">
+        <td><button type="submit" name="S" value="0">Фамилия</button></td>
+        <td><button type="submit" name="S" value="1">Имя</button></td>
+        <td><button type="submit" name="S" value="2">Отчество</button></td>
+    </form>
+        {% for author in author_list %}
+          <tr>
+            <td><a href="../author/{{author.id}}/">{{ author.last_name }}</a></td><td>{{author.first_name}}</td>
+            {% if author.middle_name != None %}
+                <td>{{author.middle_name}}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      {% else %}
+    <p>Нет авторов.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "bookshelf/base.html" %}
+  {% block content %}
+    <head>
+       
+        <title>{{ book.title }}</title>
+        <style>
+                table, th, td {
+                  align-content: center;
+                  /* border: 1px ; */
+                  border-collapse: collapse;
+                }
+                th, td {
+                  padding: 15px;
+                  text-align: left;
+                }
+                table#t01 {
+                  width: 100%;    
+                  background-color: #23dd4b;
+                }
+				.block2 { 
+    width: 100%; 
+	height: 100%;
+    background: #ccc;
+    padding: 5px;
+   
+    border: solid 1px black; 
+    
+   }
+   .block1 { 
+    
+    background: #eee;
+    
+    border: solid 1px black; 
+   
+	
+	width: 100%;
+		height: 100%;
+	padding: 5px;
+    
+	
+   }
+   
+   
+   .block3 { 
+    
+    background: #e5e5e5;
+    
+    border: solid 1px black; 
+    
+	width: 100%;
+	height: 100;
+padding: 5px;
+    }
+                </style>
+    </head> 
+   <body>
+   	
+   
+     
+    <h3>Книга: {{ book.title }}</h3>
+    {% if book %}
+        <b>Код книги:</b> {{book.number_code}}<br>
+        <b>Название:</b> <a href="../../book/{{ book.id }}/">{{ book.title }}</a><br>
+        <b>Автор:</b> <a href="../../author/{{ book.author_id }}/">{{ book.author }}</a><br>
+        <br>
+        <img src="{{pic}}" width=150></td>
+        <br>
+        <b>Описание:</b>
+        <br>
+        {{ book.description }}
+    {% else %}
+        <p>Не существует.</p>
+    {% endif %}
+        <font color=red><i>{{comment}}</i></font>
+{% endblock %}

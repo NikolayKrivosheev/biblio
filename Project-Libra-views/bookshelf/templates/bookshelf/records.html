@@ -1,0 +1,15 @@
+{% extends "bookshelf/base.html" %}
+
+{% block content %}
+  <title>Оформление книг</title>
+  <h1>Оформление книг</h1>
+  <form method="post">
+	  {% csrf_token %}
+      Номер книги: <input type="text" name="Num1" value="{{Num1}}">
+      <br>
+      Номер чит. билета: <input type="text" name="Num2" value="{{Num2}}">
+      <br>
+      <input type="submit" name="tip" value="Взять"><input type="submit" name="tip" value="Сдать">
+    </form>
+    <font color={{color}}><i>{{comment}}</i></font>
+{% endblock %}

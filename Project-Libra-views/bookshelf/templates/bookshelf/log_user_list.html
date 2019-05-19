@@ -1,0 +1,24 @@
+{% extends "bookshelf/base.html" %}
+
+{% block content %}
+  <title>Список читателей</title>
+  <h1>Список читателей</h1>
+  <input type="text" name="N" value="{{N}}"><input type="submit" name="name" value="Поиск">   <input type="submit" name="name" value="Добавить читателя"> 
+  
+  {% if log_user_list %}
+  <table border=0>
+  <tr><td>ФИО</td><td>Номер телефона</td><td>Фото</td>
+	  </tr>
+	{% for user in log_user_list %}
+    <tr>
+    <td>	
+        <a href="../user/{{user.id}}/">{{ user.last_name }} {{user.first_name}}</a>
+		<td>{{user.number_phone}} </td>
+		 <td>  <img src="{{user.pic}}" width=50></td>
+	  </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>В библиотеке нет книг.</p>
+  {% endif %}
+{% endblock %}

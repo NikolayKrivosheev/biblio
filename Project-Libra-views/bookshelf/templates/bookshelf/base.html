@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- {% block title %}<title>Local Library</title>{% endblock %} -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+          <style>
+                table, th, td {
+                  align-content: center;
+                  /* border: 1px ; */
+                  border-collapse: collapse;
+                }
+                th, td {
+                  padding: 15px;
+                  text-align: left;
+                }
+                table#t01 {
+                  width: 100%;    
+                  background-color: #23dd4b;
+                }
+				.block2 { 
+    width: 100%; 
+	height: 100%;
+    background: #ccc;
+    padding: 5px;
+   
+    border: solid 1px black; 
+    
+   }
+   .block1 { 
+    
+    background: #eee;
+    
+    border: solid 1px black; 
+   
+	
+	width: 100%;
+		height: 100%;
+	padding: 5px;
+    
+	
+   }
+   
+   
+   .block3 { 
+    
+    background: #e5e5e5;
+    
+    border: solid 1px black; 
+    
+	width: 100%;
+	height: 100;
+padding: 5px;
+    }
+                </style>
+</head>
+<body>
+<div class="block3">
+<!--<h1 align="center" >Портал администрирования библиотеки</h1>-->
+<b>Пользователь:</b> {{login}}   
+<BR><button onclick="window.location='http://127.0.0.1:8000/authorization/'">Выход</button>
+<button onclick="window.location='http://127.0.0.1:8000/admin/'">Панель администратора</button>
+
+   
+	
+</div>	
+  <div class="container-fluid" >
+    <div class="row" style="background-color:lightblue">
+  <nav>  
+      <div class="container-fluid">
+      {% block sidebar %}
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'index' %}">Главная</a></li>
+          <li><a href="{% url 'books' %}">Все книги</a></li>
+          <li><a href="{% url 'authors' %}">Все авторы</a></li>
+		  <li><a href="{% url 'users' %}">Все читатели</a></li>
+          <li><a href="{% url 'records' %}">Оформление книг</a></li>
+        </ul>
+     {% endblock %}
+      </div>
+      </nav>
+      <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
+    </div>
+  </div>
+</body>
+</html>

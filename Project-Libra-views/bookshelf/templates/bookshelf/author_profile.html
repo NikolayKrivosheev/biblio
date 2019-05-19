@@ -1,0 +1,81 @@
+{% extends "bookshelf/base.html" %}
+  {% block content %}
+    <head>
+       
+        <title>{{author.first_name}} {{author.last_name}} {{author.middle_name}}</title>
+        <style>
+                table, th, td {
+                  align-content: center;
+                  /* border: 1px ; */
+                  border-collapse: collapse;
+                }
+                th, td {
+                  padding: 15px;
+                  text-align: left;
+                }
+                table#t01 {
+                  width: 100%;    
+                  background-color: #23dd4b;
+                }
+				.block2 { 
+    width: 100%; 
+	height: 100%;
+    background: #ccc;
+    padding: 5px;
+   
+    border: solid 1px black; 
+    
+   }
+   .block1 { 
+    
+    background: #eee;
+    
+    border: solid 1px black; 
+   
+	
+	width: 100%;
+		height: 100%;
+	padding: 5px;
+    
+	
+   }
+   
+   
+   .block3 { 
+    
+    background: #e5e5e5;
+    
+    border: solid 1px black; 
+    
+	width: 100%;
+	height: 100;
+padding: 5px;
+    }
+                </style>
+    </head> 
+   <body>
+   	
+   
+     
+    
+    {% if author %}
+        <h3>Автор: {{author.first_name}} {{author.last_name}} {{author.middle_name}}</h3>
+        <br>
+        <img src="{{ author.pic }}" width=150></td>
+        <br>
+        <b>Описание:</b>
+        <br>
+        {{ author.description }}
+        <br>
+        <table border=0>
+        <td><b>Книга</b></td>
+        {% for book in book_list %}
+            <tr>
+            <td><a href="../../book/{{ book.id }}/">{{ book.title }}</a></td>
+            </tr>
+		{% endfor %}
+    {% else %}
+        <p>Не существует.</p>
+    {% endif %}
+        <font color=red><i>{{comment}}</i></font>
+{% endblock %}

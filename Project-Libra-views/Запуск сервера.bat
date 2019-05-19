@@ -1,0 +1,1 @@
+start cmd /k "python manage.py runserver & echo. & echo. & echo. & echo.Команда запуска сервера: & echo.python manage.py runserver"

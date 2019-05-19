@@ -1,14 +1,22 @@
-language: python 3.6
-
+language: python
 matrix:
-  exclude:
+  include:
   - python: 3.5
     dist: trusty
     sudo: false
-  - pyton: 3.6
+  - python: 3.6
     dist: trusty
+    sudo: false
+  - python: 3.7
+    dist: xenial
     sudo: false
 
 branches:
   only:
   - master
+  - develop
+
+install:
+  - pip install -r requirements.txt
+
+script: pytest
